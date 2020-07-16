@@ -2,6 +2,8 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import org.sql2o.*;
 
+import java.util.Arrays;
+
 public class AnimalsTest {
 
     @Rule
@@ -58,6 +60,18 @@ public class AnimalsTest {
         Animals secondAnimals = new Animals("Arturo");
         secondAnimals.save();
         assertEquals(Animals.find(secondAnimals.getId()), secondAnimals);
+    }
+
+    @Test
+    public void getSightings_retrievesAllSightingsFromDatabase_sightingsList() {
+        Animals testAnimals= new Animals("Simba");
+        testAnimals.save();
+        Sightings firstSightings = new Sightings("Nairobi", testAnimals.getId(), "George");
+        firstSightings.save();
+        Sightings secondSightings = new Sightings("Moringa", testAnimals.getId(), "Omwami");
+        secondSightings.save();
+        Sightings[] sightings = new Sightings[] { firstSightings, secondSightings };
+        assertTrue(testAnimals.getSightings().containsAll(Arrays.asList(sightings)));
     }
 
 }

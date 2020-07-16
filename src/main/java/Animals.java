@@ -41,6 +41,15 @@ public class Animals {
         }
     }
 
+    public List<Sightings> getSightings() {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "SELECT * FROM sightings where animalsId=:id";
+            return con.createQuery(sql)
+                    .addParameter("id", this.id)
+                    .executeAndFetch(Sightings.class);
+        }
+    }
+
     @Override
     public boolean equals(Object otherAnimals){
         if (!(otherAnimals instanceof Animals)) {

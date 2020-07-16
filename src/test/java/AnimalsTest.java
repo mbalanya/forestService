@@ -4,6 +4,9 @@ import org.sql2o.*;
 
 public class AnimalsTest {
 
+    @Rule
+    public DatabaseRule databse = new DatabaseRule();
+
     @Test
     public void animals_instantiatesCorrectly_true() {
         Animals testAnimals = new Animals("Simba");

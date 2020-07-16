@@ -27,10 +27,17 @@ public class SightingsTest {
     }
 
     @Test
-    public void equals_returnsTrueIfLocationPersonIdAndRangerNameAreSame_true() {
+    public void equals_returnsTrueIfLocationAnimalsIdAndRangerNameAreSame_true() {
         Sightings testSightings = new Sightings("Nairobi", 1, "George");
         Sightings anotherSightings = new Sightings("Nairobi", 1, "George");
         assertTrue(testSightings.equals(anotherSightings));
+    }
+
+    @Test
+    public void save_returnsTrueIfAretheSame() {
+        Sightings testSightings = new Sightings("Nairobi", 1, "George");
+        testSightings.save();
+        assertTrue(Sightings.all().get(0).equals(testSightings));
     }
 
 }

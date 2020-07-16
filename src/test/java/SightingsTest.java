@@ -40,4 +40,22 @@ public class SightingsTest {
         assertTrue(Sightings.all().get(0).equals(testSightings));
     }
 
+    @Test
+    public void save_assignsIdToSightings() {
+        Sightings testSightings = new Sightings("Nairobi", 1, "George");
+        testSightings.save();
+        Sightings savedSightings = Sightings.all().get(0);
+        assertEquals(savedSightings.getId(), testSightings.getId());
+    }
+
+    @Test
+    public void all_returnsAllInstancesOfSightings_true() {
+        Sightings firstSightings = new Sightings("Nairobi", 1, "George");
+        firstSightings.save();
+        Sightings secondSightings = new Sightings("Moringa", 1, "Omwami");
+        secondSightings.save();
+        assertEquals(true, Sightings.all().get(0).equals(firstSightings));
+        assertEquals(true, Sightings.all().get(1).equals(secondSightings));
+    }
+
 }

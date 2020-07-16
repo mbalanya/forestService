@@ -1,5 +1,6 @@
 import org.junit.*;
 import static org.junit.Assert.*;
+import org.sql2o.*;
 
 public class AnimalsTest {
 
@@ -13,6 +14,20 @@ public class AnimalsTest {
     public void getName_animalsInstantiatesWithName_Simba() {
         Animals testAnimals = new Animals("Simba");
         assertEquals("Simba", testAnimals.getName());
+    }
+
+    @Test
+    public void equals_returnsTrueIfNameAndEmailAreSame_true() {
+        Animals firstAnimals = new Animals("Simba");
+        Animals anotherAnimals = new Animals("Simba");
+        assertTrue(firstAnimals.equals(anotherAnimals));
+    }
+
+    @Test
+    public void save_insertsObjectIntoDatabase_Animals() {
+        Animals testAnimals = new Animals("Simba");
+        testAnimals.save();
+        assertTrue(Animals.all().get(0).equals(testAnimals));
     }
 
 }

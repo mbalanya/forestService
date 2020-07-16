@@ -31,6 +31,16 @@ public class Animals {
         }
     }
 
+    public static Animals find(int id) {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "SELECT * FROM animals where id=:id";
+            Animals animals = con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Animals.class);
+            return animals;
+        }
+    }
+
     @Override
     public boolean equals(Object otherAnimals){
         if (!(otherAnimals instanceof Animals)) {

@@ -6,6 +6,19 @@ public class Sightings {
     public Sightings(String location, int animalsId, String rangerName) {
         this.location = location;
         this.rangerName = rangerName;
+        this.animalsId = animalsId;
+    }
+
+    @Override
+    public boolean equals(Object otherSightings){
+        if (!(otherSightings instanceof Sightings)) {
+            return false;
+        } else {
+            Sightings newSightings = (Sightings) otherSightings;
+            return this.getLocation().equals(newSightings.getLocation()) &&
+                    this.getAnimalsId() == newSightings.getAnimalsId() &&
+                    this.getRangerName().equals(newSightings.getRangerName());
+        }
     }
 
     public String getLocation() { return location; }

@@ -21,9 +21,16 @@ public class SightingsTest {
     }
 
     @Test
-    public void Sitings_instantiatesWithAnimalsnId_int() {
+    public void Sitings_instantiatesWithAnimalsId_int() {
         Sightings testSightings = new Sightings("Nairobi", 1, "George");
         assertEquals(1, testSightings.getAnimalsId());
+    }
+
+    @Test
+    public void equals_returnsTrueIfLocationPersonIdAndRangerNameAreSame_true() {
+        Sightings testSightings = new Sightings("Nairobi", 1, "George");
+        Sightings anotherSightings = new Sightings("Nairobi", 1, "George");
+        assertTrue(testSightings.equals(anotherSightings));
     }
 
 }

@@ -58,4 +58,13 @@ public class SightingsTest {
         assertEquals(true, Sightings.all().get(1).equals(secondSightings));
     }
 
+    @Test
+    public void find_returnsSightingsWithSameId_secondSightings() {
+        Sightings firstSightings = new Sightings("Nairobi", 1, "George");
+        firstSightings.save();
+        Sightings secondSightings = new Sightings("Moringa", 3, "Omwami");
+        secondSightings.save();
+        assertEquals(Sightings.find(secondSightings.getId()), secondSightings);
+    }
+
 }

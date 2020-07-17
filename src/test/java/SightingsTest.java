@@ -2,6 +2,9 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import org.sql2o.*;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 public class SightingsTest {
 
     @Rule
@@ -93,6 +96,15 @@ public class SightingsTest {
     public void sightings_instantiatesWhenOkay(){
         Sightings testSitings = new Sightings("Nairobi", 1, "George");
         assertEquals(testSitings.getOkay(), (Sightings.OKAY));
+    }
+
+    @Test
+    public void save_recordsTimeOfCreationInDatabase() {
+        Sightings testSightings = new Sightings("Nairobi", 1, "George");
+        testSightings.save();
+        Timestamp savedSightingsTime = Sightings.find(testSightings.getId()).getSightingsTime();
+        Timestamp rightNow = new Timestamp(new Date().getTime());
+        assertEquals(rightNow.getDay(), savedSightingsTime.getDay());
     }
 
 }

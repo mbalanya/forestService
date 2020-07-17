@@ -36,7 +36,7 @@ public abstract class Animals {
         }
     }
 
-    public List<Object> getSightings() {
+    /*public List<Object> getSightings() {
         List<Object> allSightings = new ArrayList<Object>();
 
         try(Connection con = DB.sql2o.open()) {
@@ -48,7 +48,7 @@ public abstract class Animals {
                     allSightings.addAll(endangeredAnimals);
         }
         return allSightings;
-    }
+    }*/
 
     @Override
     public boolean equals(Object otherAnimals){

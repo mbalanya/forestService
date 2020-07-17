@@ -3,11 +3,11 @@ import org.sql2o.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EndangeredAnimals extends Animals {
+public class NormalAnimals extends Animals {
 
-    public static final String DATABASETYPE = "endangered";
+    public static final String DATABASETYPE = "normal";
 
-    public EndangeredAnimals(String name) {
+    public NormalAnimals(String name) {
         this.name = name;
         this.healthy = HEALTHY;
         this.ill = ILL;
@@ -31,22 +31,22 @@ public class EndangeredAnimals extends Animals {
 
     public String getAdult() { return adult; }
 
-    public static List<EndangeredAnimals> all() {
-        String sql = "SELECT * FROM animals WHERE type='endangered';";
+    public static List<NormalAnimals> all() {
+        String sql = "SELECT * FROM animals WHERE type='normal';";
         try(Connection con = DB.sql2o.open()) {
             return con.createQuery(sql)
                     .throwOnMappingFailure(false)
-                    .executeAndFetch(EndangeredAnimals.class);
+                    .executeAndFetch(NormalAnimals.class);
         }
     }
 
-    public static EndangeredAnimals find(int id) {
+    public static NormalAnimals find(int id) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT * FROM animals where id=:id;";
-            EndangeredAnimals animals = con.createQuery(sql)
+            NormalAnimals animals = con.createQuery(sql)
                     .addParameter("id", id)
                     .throwOnMappingFailure(false)
-                    .executeAndFetchFirst(EndangeredAnimals.class);
+                    .executeAndFetchFirst(NormalAnimals.class);
             return animals;
         }
     }
@@ -55,12 +55,12 @@ public class EndangeredAnimals extends Animals {
         List<Object> allSightings = new ArrayList<Object>();
 
         try(Connection con = DB.sql2o.open()) {
-            String sqlEndangered = "SELECT * FROM animals where id=:id AND type='endangered';";
-            List<EndangeredAnimals> endangeredAnimals = con.createQuery(sqlEndangered)
+            String sqlNormal= "SELECT * FROM animals where id=:id AND type='normal';";
+            List<NormalAnimals> normalAnimals = con.createQuery(sqlNormal)
                     .addParameter("id", id)
                     .throwOnMappingFailure(false)
-                    .executeAndFetch(EndangeredAnimals.class);
-            allSightings.addAll(endangeredAnimals);
+                    .executeAndFetch(NormalAnimals.class);
+            allSightings.addAll(normalAnimals);
         }
         return allSightings;
     }

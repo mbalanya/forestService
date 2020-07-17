@@ -7,11 +7,21 @@ public class Sightings {
     private String rangerName;
     private int animalsId;
     private int id;
+    private String healthy;
+    private String ill;
+    private String okay;
+
+    public static final String HEALTHY = "healthy";
+    public static final String ILL = "ill";
+    public static final String OKAY = "okay";
 
     public Sightings(String location, int animalsId, String rangerName) {
         this.location = location;
         this.rangerName = rangerName;
         this.animalsId = animalsId;
+        this.healthy = HEALTHY;
+        this.ill = ILL;
+        this.okay = OKAY;
     }
 
     public String getLocation() { return location; }
@@ -21,6 +31,12 @@ public class Sightings {
     public int getAnimalsId() { return animalsId; }
 
     public int getId() { return id; }
+
+    public String getHealthy() { return healthy; }
+
+    public String getIll() { return ill; }
+
+    public String getOkay() { return okay; }
 
     public void save() {
         try(Connection con = DB.sql2o.open()) {

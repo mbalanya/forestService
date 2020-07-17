@@ -77,4 +77,22 @@ public class SightingsTest {
         assertEquals(savedSightings.getAnimalsId(), testAnimals.getId());
     }
 
+    @Test
+    public void sightings_instantiatesWhenHealthy(){
+        Sightings testSitings = new Sightings("Nairobi", 1, "George");
+        assertEquals(testSitings.getHealthy(), (Sightings.HEALTHY));
+    }
+
+    @Test
+    public void sightings_instantiatesWhenIll(){
+        Sightings testSitings = new Sightings("Nairobi", 1, "George");
+        assertEquals(testSitings.getIll(), (Sightings.ILL));
+    }
+
+    @Test
+    public void sightings_instantiatesWhenOkay(){
+        Sightings testSitings = new Sightings("Nairobi", 1, "George");
+        assertEquals(testSitings.getOkay(), (Sightings.OKAY));
+    }
+
 }

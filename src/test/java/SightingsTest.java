@@ -70,7 +70,7 @@ public class SightingsTest {
         assertEquals(Sightings.find(secondSightings.getId()), secondSightings);
     }
 
-    @Test
+    /*@Test
     public void save_savesAnimalsIdIntoDB_true() {
         Animals testAnimals= new Animals("Simba");
         testAnimals.save();
@@ -78,25 +78,7 @@ public class SightingsTest {
         testSightings.save();
         Sightings savedSightings = Sightings.find(testSightings.getId());
         assertEquals(savedSightings.getAnimalsId(), testAnimals.getId());
-    }
-
-    @Test
-    public void sightings_instantiatesWhenHealthy(){
-        Sightings testSitings = new Sightings("Nairobi", 1, "George");
-        assertEquals(testSitings.getHealthy(), (Sightings.HEALTHY));
-    }
-
-    @Test
-    public void sightings_instantiatesWhenIll(){
-        Sightings testSitings = new Sightings("Nairobi", 1, "George");
-        assertEquals(testSitings.getIll(), (Sightings.ILL));
-    }
-
-    @Test
-    public void sightings_instantiatesWhenOkay(){
-        Sightings testSitings = new Sightings("Nairobi", 1, "George");
-        assertEquals(testSitings.getOkay(), (Sightings.OKAY));
-    }
+    }*/
 
     @Test
     public void save_recordsTimeOfCreationInDatabase() {

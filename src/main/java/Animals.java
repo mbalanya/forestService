@@ -2,13 +2,16 @@ import org.sql2o.*;
 
 import java.util.List;
 
-public class Animals {
-    private String name;
-    private int id;
+public abstract class Animals {
+    public String name;
+    public int id;
+    public String healthy;
+    public String ill;
+    public String okay;
 
-    public Animals(String name) {
-        this.name = name;
-    }
+    public static final String HEALTHY = "healthy";
+    public static final String ILL = "ill";
+    public static final String OKAY = "okay";
 
     public String getName() { return name; }
 
@@ -21,23 +24,6 @@ public class Animals {
                     .addParameter("name", this.name)
                     .executeUpdate()
                     .getKey();
-        }
-    }
-
-    public static List<Animals> all() {
-        String sql = "SELECT * FROM animals";
-        try(Connection con = DB.sql2o.open()) {
-            return con.createQuery(sql).executeAndFetch(Animals.class);
-        }
-    }
-
-    public static Animals find(int id) {
-        try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM animals where id=:id";
-            Animals animals = con.createQuery(sql)
-                    .addParameter("id", id)
-                    .executeAndFetchFirst(Animals.class);
-            return animals;
         }
     }
 

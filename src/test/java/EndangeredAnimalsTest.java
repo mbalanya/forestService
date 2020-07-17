@@ -92,4 +92,22 @@ public class EndangeredAnimalsTest {
         assertEquals(testEndangeredAnimals.getOkay(), (EndangeredAnimals.OKAY));
     }
 
+    @Test
+    public void endangeredAnimals_instantiatesWithNewborn(){
+        EndangeredAnimals testEndangeredAnimals = new EndangeredAnimals("Simba");
+        assertEquals(testEndangeredAnimals.getNewborn(), (EndangeredAnimals.NEWBORN));
+    }
+
+    @Test
+    public void endangeredAnimals_instantiatesWithYoung(){
+        EndangeredAnimals testEndangeredAnimals = new EndangeredAnimals("Simba");
+        assertEquals(testEndangeredAnimals.getYoung(), (EndangeredAnimals.YOUNG));
+    }
+
+    @Test
+    public void endangeredAnimals_instantiatesWithAdult(){
+        EndangeredAnimals testEndangeredAnimals = new EndangeredAnimals("Simba");
+        assertEquals(testEndangeredAnimals.getAdult(), (EndangeredAnimals.ADULT));
+    }
+
 }

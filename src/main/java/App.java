@@ -28,5 +28,37 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
+
+        post("/index/createNormalAnimal", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            String animalName = request.queryParams("animalName");
+            String health = request.queryParams("health");
+            String age = request.queryParams("age");
+            String location = request.queryParams("location");
+            String rangerName = request.queryParams("rangerName");
+            NormalAnimals newNormalAnimals = new NormalAnimals(animalName);
+            newNormalAnimals.save();
+            int animalsId = newNormalAnimals.getId();
+            Sightings newSightings = new Sightings(location, animalsId, rangerName);
+            newSightings.save();
+            response.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine();
+
+        post("/index/createEndangeredAnimal", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            String animalName = request.queryParams("animalName");
+            String health = request.queryParams("health");
+            String age = request.queryParams("age");
+            String location = request.queryParams("location");
+            String rangerName = request.queryParams("rangerName");
+            EndangeredAnimals newEndangeredAnimals = new EndangeredAnimals(animalName);
+            newEndangeredAnimals.save();
+            int animalsId = newEndangeredAnimals.getId();
+            Sightings newSightings = new Sightings(location, animalsId, rangerName);
+            newSightings.save();
+            response.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine();
     }
 }

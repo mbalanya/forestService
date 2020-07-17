@@ -12,7 +12,7 @@
     </div>
     <div class="container">
         <h3>Select Type of animal to be listed:</h3>
-        <ul class="nav nav-pills">
+        <ul class="nav nav-tabs nav-justified">
             <li class="active"><a data-toggle="pill" href="#normal">NORMAL ANIMAL</a></li>
             <li><a data-toggle="pill" href="#endangered">ENDANGERED ANIMAL</a></li>
         </ul>
@@ -20,9 +20,9 @@
             <div id="normal" class="tab-pane fade in active">
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="/createAnimal" method="post" name="createAnimal">
+                        <form action="/createNormalAnimal" method="post" name="createNormalAnimal">
                             <div class="inputBox">
-                                <label for="animalName">Animal Name</label>
+                                <label for="animalName">Normal Animal Name</label>
                                 <input type="text" class="form-control" required="" name="animalName" autocomplete="off">
                             </div>
                             <div class="inputBox">
@@ -38,6 +38,10 @@
                                     <option value="young">Young</option>
                                     <option value="adult">Adult</option>
                                 </select>
+                                <div class="inputBox">
+                                    <label for="location">Animal Location</label>
+                                    <input type="text" class="form-control" required="" name="location" autocomplete="off">
+                                </div>
                                 <div class="inputBox">
                                     <label for="rangerName">Ranger Name</label>
                                     <input type="text" class="form-control" required="" name="rangerName" autocomplete="off">
@@ -57,7 +61,7 @@
                         </form>
                     </div>
 
-                    <div class="col-md-6">
+                    <!--<div class="col-md-6">
                         <div class="row">
                             <div class="col-md-3">
                                 <h2>Squads</h2>
@@ -76,7 +80,7 @@
                                 {{/if}}
                             </div>
 
-                            <!--<div class="panel panel-default squads">-->
+                            &lt;!&ndash;<div class="panel panel-default squads">&ndash;&gt;
                             <div class="col-md-4">
                                 <h2>Endangered Animals</h2>
                                 <hr>
@@ -88,8 +92,8 @@
                                                 <small class="pull-right"><strong>Weakness: {{heroWeakness}}</strong></small>
                                                 <small class="pull-right"><strong>Special Ability: {{heroAbility}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</strong></small>
                                                 <small class="pull-right"><strong>Hero Age: {{heroAge}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; </strong></small>
-                                                <!--<small>Cause: <strong></strong></small>
-                                                <small><i class="fa fa-angle-right" aria-hidden="true">&nbsp;&nbsp;<a href="">View Squad Members</a></i></small>-->
+                                                &lt;!&ndash;<small>Cause: <strong></strong></small>
+                                                <small><i class="fa fa-angle-right" aria-hidden="true">&nbsp;&nbsp;<a href="">View Squad Members</a></i></small>&ndash;&gt;
                                             </li>
                                         {{/each}}
                                     </ul>
@@ -98,7 +102,99 @@
                                 {{/if}}
                             </div>
                         </div>
+                    </div>-->
+                </div>
+            </div>
+
+            <div id="endangered" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Help save <br> <strong>Endangered Animals</strong></h3>
                     </div>
+                    <div class="col-md-6">
+                        <form action="/createEndangeredAnimal" method="post" name="createEndangeredAnimal">
+                            <div class="inputBox">
+                                <label for="animalName">Endangered Animal Name</label>
+                                <input type="text" class="form-control" required="" name="animalName" autocomplete="off">
+                            </div>
+                            <div class="inputBox">
+                                <select name="health" data-placeholder="Aminal's health" class="form-control select2 mt15 mb0">
+                                    <option label="Select Animal's health:"></option>
+                                    <option value="healthy">Healthy</option>
+                                    <option value="ill">Ill</option>
+                                    <option value="okay">Okay</option>
+                                </select>
+                                <select name="age" class="form-control select2 mt15 mb0" data-placeholder="Animal's Age">
+                                    <option label="Select Age:"></option>
+                                    <option value="newborn">Newborn</option>
+                                    <option value="young">Young</option>
+                                    <option value="adult">Adult</option>
+                                </select>
+                                <div class="inputBox">
+                                    <label for="location">Location</label>
+                                    <input type="text" class="form-control" required="" name="location" autocomplete="off">
+                                </div>
+                                <div class="inputBox">
+                                    <label for="rangerName">Ranger Name</label>
+                                    <input type="text" class="form-control" required="" name="rangerName" autocomplete="off">
+                                </div>
+                                <!--<select name="heroSquad" class="form-control select2 mt15 mb0" data-placeholder="Assign to Squad">
+                                    {{#if squads}}
+                                        <option label="Assign to Squad"></option>
+                                        {{#each squads}}
+                                            <option value="{{id}}">{{squadName}}</option>
+                                        {{/each}}
+                                {{else}}
+                                        <option label="No Squads Created"></option>
+                                    {{/if}}
+                                </select>-->
+                            </div>
+                            <input value="Add Animal" type="submit">
+                        </form>
+                    </div>
+
+                    <!--<div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h2>Squads</h2>
+                                <hr>
+                                {{#if squads}}
+                                    <ul>
+                                        {{#each squads}}
+                                            <li>
+                                                <h4 class="squadName"> {{squadName}} </h4>
+                                                <small><a href="/heros/{{id}}">View Heroes</a></small>
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                {{else}}
+                                    <span class="label label-warning">No Squads Added Yet!</span>
+                                {{/if}}
+                            </div>
+
+                            &lt;!&ndash;<div class="panel panel-default squads">&ndash;&gt;
+                            <div class="col-md-4">
+                                <h2>Endangered Animals</h2>
+                                <hr>
+                                {{#if heros}}
+                                    <ul>
+                                        {{#each heros}}
+                                            <li class="mt10">
+                                                <h3 class="squadName">{{heroName}}</h3>
+                                                <small class="pull-right"><strong>Weakness: {{heroWeakness}}</strong></small>
+                                                <small class="pull-right"><strong>Special Ability: {{heroAbility}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</strong></small>
+                                                <small class="pull-right"><strong>Hero Age: {{heroAge}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; </strong></small>
+                                                &lt;!&ndash;<small>Cause: <strong></strong></small>
+                                                <small><i class="fa fa-angle-right" aria-hidden="true">&nbsp;&nbsp;<a href="">View Squad Members</a></i></small>&ndash;&gt;
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                {{else}}
+                                    <span class="label label-warning">No Endangered Animal Added Yet!</span>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>-->
                 </div>
             </div>
         </div>

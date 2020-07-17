@@ -29,7 +29,7 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-        post("/index/createNormalAnimal", (request, response) -> {
+        post("/createNormalAnimal", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             String animalName = request.queryParams("animalName");
             String health = request.queryParams("health");
@@ -43,9 +43,9 @@ public class App {
             newSightings.save();
             response.redirect("/");
             return null;
-        }, new HandlebarsTemplateEngine();
+        }, new HandlebarsTemplateEngine());
 
-        post("/index/createEndangeredAnimal", (request, response) -> {
+        post("/createEndangeredAnimal", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             String animalName = request.queryParams("animalName");
             String health = request.queryParams("health");
@@ -59,6 +59,6 @@ public class App {
             newSightings.save();
             response.redirect("/");
             return null;
-        }, new HandlebarsTemplateEngine();
+        }, new HandlebarsTemplateEngine());
     }
 }

@@ -1,0 +1,103 @@
+{{#partial "title"}}
+    Forest Service
+{{/partial}}
+
+{{#partial "content"}}
+    <div class="container">
+        <div class="row">
+            <h3>Forest service Wildlife Tracker </h3>
+            <p>With this application you will track wildlife in an assigned are ato give feedback on data to be used for research on environmental impact.
+                <br> This will be approached through determining if an animals is endangered compared to their age.  </p>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Select Type of animal to be listed:</h3>
+
+        <div class="row">
+            <div class="col-md-6">
+                <form action="/createAnimal" method="post" name="createAnimal">
+                    <div class="inputBox">
+                        <label for="animalName">Animal Name</label>
+                        <input type="text" class="form-control" required="" name="animalName" autocomplete="off">
+                    </div>
+                    <div class="inputBox">
+                        <select name="health" data-placeholder="Aminal's health" class="form-control select2 mt15 mb0">
+                            <option label="Select Animal's health:"></option>
+                            <option value="healthy">Healthy</option>
+                            <option value="ill">Ill</option>
+                            <option value="okay">Okay</option>
+                        </select>
+                        <select name="age" class="form-control select2 mt15 mb0" data-placeholder="Animal's Age">
+                            <option label="Select Age:"></option>
+                            <option value="newborn">Newborn</option>
+                            <option value="young">Young</option>
+                            <option value="adult">Adult</option>
+                        </select>
+                        <div class="inputBox">
+                            <label for="rangerName">Ranger Name</label>
+                            <input type="text" class="form-control" required="" name="rangerName" autocomplete="off">
+                        </div>
+                        <!--<select name="heroSquad" class="form-control select2 mt15 mb0" data-placeholder="Assign to Squad">
+                            {{#if squads}}
+                                <option label="Assign to Squad"></option>
+                                {{#each squads}}
+                                    <option value="{{id}}">{{squadName}}</option>
+                                {{/each}}
+                            {{else}}
+                                <option label="No Squads Created"></option>
+                            {{/if}}
+                        </select>-->
+                    </div>
+                    <input value="Add Animal" type="submit">
+                </form>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h2>Squads</h2>
+                        <hr>
+                        {{#if squads}}
+                            <ul>
+                                {{#each squads}}
+                                    <li>
+                                        <h4 class="squadName"> {{squadName}} </h4>
+                                        <small><a href="/heros/{{id}}">View Heroes</a></small>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        {{else}}
+                            <span class="label label-warning">No Squads Added Yet!</span>
+                        {{/if}}
+                    </div>
+
+                    <!--<div class="panel panel-default squads">-->
+                    <div class="col-md-4">
+                        <h2>Endangered Animals</h2>
+                        <hr>
+                        {{#if heros}}
+                            <ul>
+                                {{#each heros}}
+                                    <li class="mt10">
+                                        <h3 class="squadName">{{heroName}}</h3>
+                                        <small class="pull-right"><strong>Weakness: {{heroWeakness}}</strong></small>
+                                        <small class="pull-right"><strong>Special Ability: {{heroAbility}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</strong></small>
+                                        <small class="pull-right"><strong>Hero Age: {{heroAge}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; </strong></small>
+                                        <!--<small>Cause: <strong></strong></small>
+                                        <small><i class="fa fa-angle-right" aria-hidden="true">&nbsp;&nbsp;<a href="">View Squad Members</a></i></small>-->
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        {{else}}
+                            <span class="label label-warning">No Endangered Animal Added Yet!</span>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{{/partial}}
+{{> layout.hbs}}

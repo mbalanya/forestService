@@ -4,6 +4,8 @@ import java.util.List;
 
 public class EndangeredAnimals extends Animals {
 
+    public static final String DATABASETYPE = "endangered";
+
     public EndangeredAnimals(String name) {
         this.name = name;
         this.healthy = HEALTHY;
@@ -12,6 +14,7 @@ public class EndangeredAnimals extends Animals {
         this.newborn = NEWBORN;
         this.young = YOUNG;
         this.adult = ADULT;
+        type = DATABASETYPE;
 
     }
 
@@ -28,17 +31,20 @@ public class EndangeredAnimals extends Animals {
     public String getAdult() { return adult; }
 
     public static List<EndangeredAnimals> all() {
-        String sql = "SELECT * FROM animals";
+        String sql = "SELECT * FROM animals WHERE type='endangered';";
         try(Connection con = DB.sql2o.open()) {
-            return con.createQuery(sql).executeAndFetch(EndangeredAnimals.class);
+            return con.createQuery(sql)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(EndangeredAnimals.class);
         }
     }
 
     public static EndangeredAnimals find(int id) {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM animals where id=:id";
+            String sql = "SELECT * FROM animals where id=:id;";
             EndangeredAnimals animals = con.createQuery(sql)
                     .addParameter("id", id)
+                    .throwOnMappingFailure(false)
                     .executeAndFetchFirst(EndangeredAnimals.class);
             return animals;
         }

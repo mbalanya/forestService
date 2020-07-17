@@ -71,13 +71,13 @@ public class SightingsTest {
     }
 
     /*@Test
-    public void save_savesAnimalsIdIntoDB_true() {
-        Animals testAnimals= new Animals("Simba");
-        testAnimals.save();
-        Sightings testSightings = new Sightings("Nairobi", testAnimals.getId(), "George");
+    public void save_savesEndangeredAnimalsIdIntoDB_true() {
+        EndangeredAnimals testEndangeredAnimals= new EndangeredAnimals("Simba");
+        testEndangeredAnimals.save();
+        Sightings testSightings = new Sightings("Nairobi", testEndangeredAnimals.getId(), "George");
         testSightings.save();
         Sightings savedSightings = Sightings.find(testSightings.getId());
-        assertEquals(savedSightings.getAnimalsId(), testAnimals.getId());
+        assertEquals(savedSightings.getAnimalsId(), testEndangeredAnimals.getId());
     }*/
 
     @Test

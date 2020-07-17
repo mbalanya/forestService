@@ -1,5 +1,6 @@
 import org.sql2o.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Animals {
@@ -11,6 +12,7 @@ public abstract class Animals {
     public String newborn;
     public String young;
     public String adult;
+    public String type;
 
     public static final String HEALTHY = "healthy";
     public static final String ILL = "ill";
@@ -25,21 +27,27 @@ public abstract class Animals {
 
     public void save() {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO animals (name) VALUES (:name)";
+            String sql = "INSERT INTO animals (name, type) VALUES (:name, :type)";
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("name", this.name)
+                    .addParameter("type", this.type)
                     .executeUpdate()
                     .getKey();
         }
     }
 
-    public List<Sightings> getSightings() {
+    public List<Object> getSightings() {
+        List<Object> allSightings = new ArrayList<Object>();
+
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM sightings where animalsId=:id";
-            return con.createQuery(sql)
-                    .addParameter("id", this.id)
-                    .executeAndFetch(Sightings.class);
+            String sqlEndangered = "SELECT * FROM animals where id=:id AND type='endangered';";
+            List<EndangeredAnimals> endangeredAnimals = con.createQuery(sqlEndangered)
+                    .addParameter("id", id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(EndangeredAnimals.class);
+                    allSightings.addAll(endangeredAnimals);
         }
+        return allSightings;
     }
 
     @Override

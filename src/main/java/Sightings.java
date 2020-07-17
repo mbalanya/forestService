@@ -41,7 +41,7 @@ public class Sightings {
 
     public static Sightings find(int id) {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "SELECT * FROM sightings where id=:id";
+            String sql = "SELECT * FROM sightings where id=:id;";
             Sightings sightings = con.createQuery(sql)
                     .addParameter("id", id)
                     .executeAndFetchFirst(Sightings.class);
